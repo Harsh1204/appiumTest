@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.example</groupId>
+    <artifactId>appiumTest</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>appiumTest</name>
+    <description>appiumTest</description>
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+    <profiles>
+        <profile>
+            <id>device-a</id>
+            <properties>
+                <platformName>Android</platformName>
+                <deviceName>AshishPixel5</deviceName>
+                <udid>emulator-5554</udid>
+
+                <testGroups>smoke</testGroups>
+
+            </properties>
+
+        </profile>
+        <profile>
+            <id>device-b</id>
+            <properties>
+                <platformName>Android</platformName>
+                <deviceName>AshishPixel6</deviceName>
+                <udid>emulator-5556</udid>
+
+
+            </properties>
+        </profile>
+        <profile>
+        <id>device-c-A-real</id>
+        <properties>
+            <platformName>Android</platformName>
+            <deviceName>iQOOZ9x5G</deviceName>
+
+            <udid>${env.ANDROID_DEVICE_UDID}</udid>
+
+
+        </properties>
+    </profile>
+        <profile>
+            <id>device-d-i-real</id>
+            <properties>
+                <platformName>IOS</platformName>
+                <deviceName>iPhone 12 Pro</deviceName>
+
+                <udid>${env.IOS_DEVICE_UDID}</udid>
+                <appPath>src/main/resources/iphonerealdevice/IntegrationApp.app</appPath>
+            </properties>
+        </profile>
+        <profile>
+            <id>device-i</id>
+            <properties>
+                <platformName>IOS</platformName>
+                <deviceName>iPhone 17 Pro</deviceName>
+                <udid>696590E1-3705-4933-87BD-5B6693276487</udid>
+                <appPath>src/main/resources/iphonesimulator/IntegrationApp.app</appPath>
+            </properties>
+
+        </profile>
+        <profile>
+            <id>device-j</id>
+            <properties>
+                <platformName>IOS</platformName>
+                <deviceName>iPhone 18 Pro</deviceName>
+                <udid>794BAD9B-6739-4D42-A0DC-EA3F1ACC1E68</udid>
+                <appPath>src/main/resources/iphonesimulator/IntegrationApp.app</appPath>
+            </properties>
+
+        </profile>
+        <profile>
+            <id>device-null</id>
+            <properties>
+                <platformName></platformName>
+                <deviceName></deviceName>
+                <udid></udid>
+
+            </properties>
+
+        </profile>
+    </profiles>
+    <properties>
+        <java.version>17</java.version>
+        <!-- Define a default TestNG file to fallback on -->
+
+        <suiteFile>src/test/resources/testng.xml</suiteFile>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc</artifactId>
+        </dependency>
+
+            <!-- Spring Boot Test Starter -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>3.3.0</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Appium Java Client -->
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.47.0</version>
+        </dependency>
+        <!-- Appium Java Client -->
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>10.1.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Pin Selenium to a compatible version below 4.34.0 -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.23.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>6.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+
+
+    <build>
+        <plugins>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>properties-maven-plugin</artifactId>
+                        <version>1.2.1</version>
+                        <executions>
+                            <execution>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>read-project-properties</goal>
+                                </goals>
+                                <configuration>
+                                    <files>
+                                        <file>src/test/resources/config.properties</file>
+                                    </files>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <annotationProcessorPaths>
+                                <path>
+                                    <groupId>org.projectlombok</groupId>
+                                    <artifactId>lombok</artifactId>
+                                </path>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <annotationProcessorPaths>
+                                <path>
+                                    <groupId>org.projectlombok</groupId>
+                                    <artifactId>lombok</artifactId>
+                                </path>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/test/resources/test-jar-with-dependencies.xml</descriptor>
+                    </descriptors>
+                    <archive>
+                        <!-- We would like to create an executable jar so that we can execute it directly -->
+                        <manifest>
+                            <mainClass>org.testng.TestNG</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.6.0-M1</version> <!-- Use the latest stable version -->
+                        <configuration>
+
+
+
+                            <suiteXmlFiles>
+
+                                <!-- Dynamically inject the property here -->
+                                <suiteXmlFile>testng.xml</suiteXmlFile>
+
+                            </suiteXmlFiles>
+                            <systemPropertyVariables>
+                                <platformName>${platformName}</platformName>
+                                <deviceName>${deviceName}</deviceName>
+                                <udid>${udid}</udid>
+                                <appPath>${appPath}</appPath>
+                                <!-- Optional: Handy for routing between Android and iOS logic -->
+                            </systemPropertyVariables>
+
+                        </configuration>
+                    </plugin>
+
+
+
+        </plugins>
+    </build>
+    
+</project>
